@@ -1,0 +1,144 @@
+﻿@page
+@model AdminSimulator.Areas.Identity.Pages.Account.IndexModel
+
+@{
+    //ViewData["Title"] = "Список пользователей";
+    //
+    //disable token
+    //
+    //upload on github
+    //postgre dataprovider
+    //deploy on heroku
+    //
+}
+@*<h2>@ViewData["Title"]</h2>*@
+<h2>Список пользователей</h2>
+
+@*<p><a asp-page="Create">Добавить пользователя</a></p>*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<button class="btn" id="block"><i class="fa fa-close"> Block</i></button>
+<button class="btn" id="unblock"><i class="fa fa-arrow-circle-up"> Unblock</i></button>
+<button class="btn" id="delete"><i class="fa fa-trash"> Delete</i></button>
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr><th><input class="form-check-input" type="checkbox" value="" id="checkbox"> check all</th><th>ID</th><th>Name</th><th>Email</th><th>Registrtion Date</th><th>Last Login</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in Model.Users)
+            {
+                <tr><td align="center"><input class="form-check-input child" type="checkbox" value="" id=@user.UserId></td> <td>@user.UserId</td><td>@user.UserName</td><td>@user.UserEmail</td><td>@user.RegisterDate</td><td>@user.LastActiveDate</td><td>@user.UserStatus</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    function refreshPage() {
+        location.reload(true);
+    }
+
+    $(document).ready(function() {
+        $('#checkbox').change(function () {
+            if (this.checked) {
+                $('body input:checkbox').prop('checked', true);
+            } else {
+                $('body input:checkbox').prop('checked', false);
+            }
+        })
+
+        $('input[type="checkbox"]').on('change', function () {
+            var all = $(':checkbox').not(document.getElementById("checkbox")).length;
+            var actives = $(':checkbox:checked').not(document.getElementById("checkbox")).length;
+
+            if (actives == all) {
+                $('#checkbox').prop('checked', true)
+            }
+            else {
+                $('#checkbox').prop('checked', false)
+            }
+        })
+
+        //function sleep(ms) {
+        //    return new Promise(resolve => setTimeout(resolve, ms));
+        //}
+
+        $('#unblock').on('click', function (e) {
+            var checkedArray = [];
+            $('input:checkbox:checked').each(function () {
+                checkedArray.push(parseInt($(this).attr("id")));
+            })
+            console.log(checkedArray);
+
+            $.ajax({
+
+                url: "@Url.Action("Unblock")",
+                type: "post",
+                dataType: "json",
+                contextType: "application/json",
+                data: { selectedIds: checkedArray },
+                traditional: true,
+                success: function (data) {
+                    console.log('Данные отправлены');
+                    location.reload(true);
+                }
+            });
+            
+            $('body input:checkbox').prop('checked', false);
+        });
+
+
+
+
+        $('#delete').on('click', function (e) {
+            var checkedArray = [];
+            $('input:checkbox:checked').each(function () {
+                checkedArray.push(parseInt($(this).attr("id")));
+            })
+            console.log(checkedArray);
+
+            $.ajax({
+                url: "@Url.Action("Delete")",
+                type: "post",
+                dataType: "json",
+                contextType: "application/json",
+                data: { selectedIds: checkedArray },
+                traditional: true,
+                success: function (data) {
+                    console.log('Данные отправлены');
+                    location.reload(true);
+                }
+            });
+            $('body input:checkbox').prop('checked', false);
+        });
+
+        $('#block').on('click', function (e) {
+            var checkedArray = [];
+            $('input:checkbox:checked').each(function () {
+                checkedArray.push(parseInt($(this).attr("id")));
+            })
+            console.log(checkedArray);
+
+            $.ajax({
+                url: "@Url.Action("Block")",
+                type: "post",
+                dataType: "json",
+                contextType: "application/json",
+                data: { selectedIds: checkedArray },
+                traditional: true,
+                success: function (data) {
+                    console.log('Данные отправлены');
+                    refreshPage();
+                }
+            });
+            //sleep(1000).then(() => { clocation.reload(true); });
+            
+            $('body input:checkbox').prop('checked', false);
+        });
+
+    })
+</script>
