@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uwaS/RB3slml7H3fHRgnTvCeB73eCBHwAhoZ4Y3I6uCgNRlA6+G0DnFWYpOZjC5p8wg6bpLwiKYl7oV7jVNnVw==",
+  "dgSpecHash": "7HWLX6x8w70fCrP9G/NsV0U7g+TNtn2NIiihlcnnopOGhjIaDcFVzT2gtFGTFVxO8WI73u/S1aespm4T+2GLlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\vlll\\Desktop\\Itransition\\task4\\AdminSimulator\\AdminSimulator\\AdminSimulator.csproj",
   "expectedPackageFiles": [
@@ -64,6 +64,8 @@
     "C:\\Users\\vlll\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\vlll\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\vlll\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\vlll\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
+    "C:\\Users\\vlll\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.0\\npgsql.entityframeworkcore.postgresql.5.0.0.nupkg.sha512",
     "C:\\Users\\vlll\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\vlll\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\vlll\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
